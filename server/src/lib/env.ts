@@ -6,6 +6,8 @@ process.loadEnvFile();
 const env = createEnv({
   server: {
     PORT: z.string(),
+    DATABASE_URL: z.string(),
+    NODE_ENV: z.enum(["production", "development"]),
   },
   runtimeEnv: process.env,
 });
