@@ -1,9 +1,10 @@
-import { procedure, router } from "../lib/trpc.js";
+import { router } from "../lib/trpc.js";
+import authRouter from "./auth.js";
 
 type AppRouter = typeof appRouter;
 
 const appRouter = router({
-  greet: procedure.query(() => "Hello, World!"),
+  auth: authRouter,
 });
 
 export type { AppRouter };
