@@ -19,7 +19,9 @@ const authRouter = router({
 
     const hashedPassword = await bcrypt.hash(input.password, 10);
 
-    await db.user.create({ data: { ...input, password: hashedPassword } });
+    const { confirmPassword: _, ...value } = input;
+
+    await db.user.create({ data: { ...value, password: hashedPassword } });
 
     return { message: "You have successfully created an account." };
   }),
