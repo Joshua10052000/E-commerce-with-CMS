@@ -9,6 +9,7 @@ const env = createEnv({
     DATABASE_URL: z.string(),
     NODE_ENV: z.enum(["production", "development"]),
     SESSION_SECRET: z.string(),
+    CONTENT_MANGEMENT_URL: z.string(),
   },
   runtimeEnv: process.env,
 });

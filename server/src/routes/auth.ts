@@ -3,20 +3,6 @@ import { TRPCError } from "@trpc/server";
 import db from "../lib/db.js";
 import { procedure, router } from "../lib/trpc.js";
 import { zodSchema } from "../lib/zod.js";
-import { create } from "../lib/session.js";
-
-const privateProcedure = procedure.use(async ({ next, ctx }) => {
-  const { session } = ctx.req;
-
-  if (!session.userId || !session.userRole) {
-    throw new TRPCError({
-      code: "UNAUTHORIZED",
-      message: "Signing in is required.",
-    });
-  }
-
-  return next();
-});
 
 const authRouter = router({
   signUp: procedure.input(zodSchema.auth.signUp).mutation(async ({ input }) => {
@@ -72,18 +58,13 @@ const authRouter = router({
         });
       }
 
-      await create(
-        ctx.req.sessionID,
-        foundUser.id,
-        new Date(new Date().getDate() - 7)
-      );
+      const { password, ...user } = foundUser;
 
-      ctx.req.session.userId = foundUser.id;
-      ctx.req.session.userRole = foundUser.role;
+      ctx.req.session.userId = user.id;
+      ctx.req.session.user = user;
 
-      return { session: ctx.req.session };
+      return { user };
     }),
 });
 
-export { privateProcedure };
 export default authRouter;
