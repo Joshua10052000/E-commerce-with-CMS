@@ -13,7 +13,9 @@
   "devDependencies": {
     "@prisma/client": "^5.21.1",
     "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.7",
     "@types/express": "^5.0.0",
+    "@types/express-session": "^1.18.0",
     "@types/node": "^22.7.9",
     "concurrently": "^9.0.1",
     "nodemon": "^3.1.7",
@@ -24,7 +26,9 @@
     "@t3-oss/env-core": "^0.11.1",
     "@trpc/server": "^11.0.0-rc.593",
     "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
     "express": "^4.21.1",
+    "express-session": "^1.18.1",
     "zod": "^3.23.8"
   }
 }

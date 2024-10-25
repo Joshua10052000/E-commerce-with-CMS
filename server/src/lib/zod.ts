@@ -20,6 +20,13 @@ const zodSchema = {
         message: "Password does not matched.",
         path: ["confirmPassword"],
       }),
+    signIn: z.object({
+      email: z
+        .string()
+        .min(1, { message: "Email is required." })
+        .email({ message: "Invalid email." }),
+      password: z.string().min(1, { message: "Password is required." }),
+    }),
   },
 };
 

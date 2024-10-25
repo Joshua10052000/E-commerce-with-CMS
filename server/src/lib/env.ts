@@ -8,6 +8,7 @@ const env = createEnv({
     PORT: z.string(),
     DATABASE_URL: z.string(),
     NODE_ENV: z.enum(["production", "development"]),
+    SESSION_SECRET: z.string(),
   },
   runtimeEnv: process.env,
 });
