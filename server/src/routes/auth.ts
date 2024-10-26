@@ -60,8 +60,8 @@ const authRouter = router({
 
       const { password, ...user } = foundUser;
 
-      ctx.req.session.userId = user.id;
       ctx.req.session.user = user;
+      ctx.req.session.userId = user.id;
 
       return { user };
     }),

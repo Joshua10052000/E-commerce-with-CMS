@@ -1,15 +1,14 @@
-import { procedure, router } from "../lib/trpc.js";
+import { privateProcedure, procedure, router } from "../lib/trpc.js";
 import authRouter from "./auth.js";
-import userRouter from "./user.js";
 
 type AppRouter = typeof appRouter;
 
 const appRouter = router({
   auth: authRouter,
-  user: userRouter,
-  greet: procedure.query(({ ctx }) => {
+  greet: procedure.query(({}) => {
     return "Hello, World!";
   }),
+  protected: privateProcedure.query(() => "Hello, World!"),
 });
 
 export type { AppRouter };

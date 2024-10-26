@@ -6,7 +6,7 @@ import env from "./lib/env.js";
 import appRouter from "./routes/index.js";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { createContext } from "./lib/trpc.js";
-import store from "./lib/session-store.js";
+import store from "./lib/store.js";
 
 const app = express();
 
@@ -28,7 +28,8 @@ app.use(
 );
 
 app.use((req, _, next) => {
-  console.log(`Method: ${req.method}\nRoute: ${req.url}`);
+  console.log(`Method: ${req.method}`);
+  console.log(`Route: ${req.url}`);
 
   next();
 });
